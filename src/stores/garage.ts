@@ -1,4 +1,8 @@
-import { isCarArray, type Car } from '@/interfaces/car'
+import {
+  isCar,
+  isCarArray,
+  type Car,
+} from '@/interfaces/car'
 import { request } from '@/utils/request'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
@@ -9,6 +13,14 @@ const validateCars = (cars: unknown) => {
   }
 
   return cars
+}
+
+const validateCar = (car: unknown) => {
+  if (!isCar(car)) {
+    throw 'invalid data'
+  }
+
+  return car
 }
 
 export const useGarage = defineStore('garage', () => {
@@ -35,9 +47,22 @@ export const useGarage = defineStore('garage', () => {
     )
   }
 
+  const createCar = async (name: string, color: string) =>
+    request(
+      '/garage',
+      {
+        method: 'POST',
+        body: JSON.stringify({ name, color }),
+      },
+      validateCar,
+    ).then((car) => {
+      cars.value.push(car)
+    })
+
   return {
     cars,
     getCars,
     deleteCar,
+    createCar,
   }
 })

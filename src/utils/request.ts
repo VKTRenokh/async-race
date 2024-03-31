@@ -21,8 +21,6 @@ export const request = async <R>(
   init: RequestInit,
   validate?: (data: unknown) => R,
 ) => {
-  init.body && (init.body = JSON.stringify(init.body))
-
   return fetch(
     `${import.meta.env.VITE_API_URL}${path}`,
     withJson(init),
