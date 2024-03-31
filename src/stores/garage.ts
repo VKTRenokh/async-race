@@ -26,8 +26,18 @@ export const useGarage = defineStore('garage', () => {
     return cars
   }
 
+  const deleteCar = async (id: number) => {
+    request(`/garage/${id}`, { method: 'DELETE' }).then(
+      () =>
+        (cars.value = cars.value.filter(
+          (car) => car.id !== id,
+        )),
+    )
+  }
+
   return {
     cars,
     getCars,
+    deleteCar,
   }
 })
