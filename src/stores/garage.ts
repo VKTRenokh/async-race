@@ -1,27 +1,9 @@
-import {
-  isCar,
-  isCarArray,
-  type Car,
-} from '@/interfaces/car'
+import { type Car } from '@/interfaces/car'
 import { request } from '@/utils/request'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-
-const validateCars = (cars: unknown) => {
-  if (!isCarArray(cars)) {
-    throw 'invalid data'
-  }
-
-  return cars
-}
-
-const validateCar = (car: unknown) => {
-  if (!isCar(car)) {
-    throw 'invalid data'
-  }
-
-  return car
-}
+import { validateCars } from './utils/validate-cars'
+import { validateCar } from './utils/validate-car'
 
 export const useGarage = defineStore('garage', () => {
   const cars = ref<Car[]>([])

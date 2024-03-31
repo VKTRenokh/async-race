@@ -20,6 +20,7 @@ export const car: FunctionalComponent<Props, Emits> = (
   })
 
   return h('div', { className: 'car' }, [
+    h('h4', [props.car.name]),
     square,
     h('button', { onClick: () => props.onDelete?.() }, [
       'd',
