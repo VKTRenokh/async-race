@@ -1,13 +1,12 @@
-import type { Car } from '@/interfaces/car'
+import './car.css'
 import {
   type FunctionalComponent,
-  h,
-  type VNode,
   type RendererElement,
   type RendererNode,
+  type VNode,
+  h,
 } from 'vue'
-
-import './car.css'
+import type { Car } from '@/interfaces/car'
 import type { DriveResponse } from '@/interfaces/drive-response'
 
 type Emits = {

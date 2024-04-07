@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useGarage } from '@/stores/garage'
 import { onMounted, ref } from 'vue'
 import { car as Car } from '@/components/car'
 import GarageForm from '@/components/garage-form.vue'
+import { useGarage } from '@/stores/garage'
 
 const errorMessage = ref<null | string>(null)
 

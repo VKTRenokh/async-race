@@ -1,9 +1,9 @@
-import { type Car } from '@/interfaces/car'
+import { validateCar } from './utils/validate-car'
+import { validateCars } from './utils/validate-cars'
 import { request } from '@/utils/request'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { validateCars } from './utils/validate-cars'
-import { validateCar } from './utils/validate-car'
+import { type Car } from '@/interfaces/car'
 import { validateDriveResponse } from '@/interfaces/drive-response'
 
 export const useGarage = defineStore('garage', () => {
