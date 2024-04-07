@@ -4,6 +4,7 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { validateCars } from './utils/validate-cars'
 import { validateCar } from './utils/validate-car'
+import { validateDriveResponse } from '@/interfaces/drive-response'
 
 export const useGarage = defineStore('garage', () => {
   const cars = ref<Car[]>([])
@@ -41,10 +42,18 @@ export const useGarage = defineStore('garage', () => {
       cars.value.push(car)
     })
 
+  const startCar = async (id: number) =>
+    request(
+      `/engine?id=${id}&status=started`,
+      { method: 'PATCH' },
+      validateDriveResponse,
+    )
+
   return {
     cars,
     getCars,
     deleteCar,
     createCar,
+    startCar,
   }
 })

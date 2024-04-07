@@ -15,6 +15,10 @@ const handleSubmit = (name: string, color: string) => {
   garage.createCar(name, color)
 }
 
+const carStartHandler = (id: number) => {
+  return garage.startCar(id)
+}
+
 onMounted(() => {
   garage.getCars().catch(showErrorMessage)
 })
@@ -29,6 +33,7 @@ onMounted(() => {
     <Car
       :car="car"
       @delete="garage.deleteCar(car.id)"
+      @start="carStartHandler(car.id)"
     ></Car>
   </template>
 </template>
